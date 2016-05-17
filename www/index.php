@@ -1,4 +1,4 @@
-<?php
+<?php header('Content-Type: application/json');
 
 // Domain
 define('DOMAIN', 'your-domain.com');
