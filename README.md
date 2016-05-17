@@ -1,2 +1,3 @@
-# ansible-discovery
-Ansible discovery host and filter by operating system
+# Ansible Discovery
+
+Ansible discovery host and filter by operating system.
