@@ -3,7 +3,7 @@ Ansible hosts discovery and filter by operating system.
 
 ## How this works ?
 The Ansible server has a web server and each client has a curl who make a request to the web server every day.
-The server generate a JSON file for each request from clients. The server execute the `generate-host.py` and this script generate the host list for Ansible.
+The server generate a JSON file for each request from clients.
 
 JSON file for the hostname `client01`
 ```
@@ -22,6 +22,8 @@ JSON file for the hostname `client02`
     "time":"2016-05-18 15:30:00"
 }
 ```
+
+After the clients make the HTTP request, you can execute the `generate-host.py` file on the server and this script generate the host list for Ansible.
 
 Ansible host list `/etc/ansible/hosts`
 ```
