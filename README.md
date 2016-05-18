@@ -57,4 +57,6 @@ The script `generate-host.py` generate the file `/etc/ansible/hosts` for Ansible
 
 For example, the task for generate the file of host list is executed at 20:00hs, after the clients are announced.
 
-`* 20 * * * /usr/bin/python /root/generate-host.py`
+```
+* 20 * * * /usr/bin/python /root/generate-host.py
+```
