@@ -12,6 +12,7 @@ if( !isset($_POST['hostname']) || !isset($_POST['os']) ) {
 // -----------------------------------------------------------------------------
 $hostname = htmlspecialchars($_POST['hostname'], ENT_COMPAT|ENT_HTML5, 'UTF-8');
 $hostname = trim($hostname);
+$hostname = mb_strtolower($hostname, 'UTF-8');
 
 if(empty($hostname)) {
     exit(json_encode(array('status'=>1, 'message'=>'Failed when try to detect the hostname.')));
@@ -21,6 +22,7 @@ if(empty($hostname)) {
 // -----------------------------------------------------------------------------
 $os = htmlspecialchars($_POST['os'], ENT_COMPAT|ENT_HTML5, 'UTF-8');
 $os = trim($os);
+$os = mb_strtolower($os, 'UTF-8');
 
 if(empty($os)) {
     exit(json_encode(array('status'=>1, 'message'=>'Failed when try to detect the OS.')));
