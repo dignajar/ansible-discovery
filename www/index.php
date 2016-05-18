@@ -1,13 +1,7 @@
 <?php header('Content-Type: application/json');
 
-// Domain
-define('DOMAIN', 'your-domain.com');
-
 // Where store the JSON files
 define('JSON_DIR', '/www/hosts/');
-
-// Set timezone to UTC
-date_default_timezone_set('UTC');
 
 // Available operating system
 $availableOS = array(
@@ -27,10 +21,8 @@ if( !isset($_POST['hostname']) || !isset($_POST['os']) ) {
 $hostname = htmlspecialchars($_POST['hostname'], ENT_COMPAT|ENT_HTML5, 'UTF-8');
 $hostname = trim($hostname);
 
-$eHostname = explode(DOMAIN, $hostname);
-
-if( empty($eHostname[0]) || !isset($eHostname[1]) ) {
-  exit(json_encode(array('status'=>1, 'message'=>'Failed when try to detect the Hostname.')));
+if(empty($hostname)) {
+    exit(json_encode(array('status'=>1, 'message'=>'Failed when try to detect the hostname.')));
 }
 
 // OS
@@ -42,8 +34,9 @@ if(empty($os)) {
     exit(json_encode(array('status'=>1, 'message'=>'Failed when try to detect the OS.')));
 }
 
-// Current time
+// Current time in UTC
 // -----------------------------------------------------------------------------
+date_default_timezone_set('UTC');
 $date = new DateTime();
 $currentDate = $date->format('Y-m-d H:i:s');
 
@@ -51,14 +44,14 @@ $currentDate = $date->format('Y-m-d H:i:s');
 // -----------------------------------------------------------------------------
 
 // $data = array('hostname'=>'', 'os'=>'', 'time'=>'');
-$filename = JSON_DIR.$eHostname[0].'.'.DOMAIN.'.json';
+$filename = JSON_DIR.$hostname.'.json';
 
 // Recovery data from the JSON file
 if(file_exists($filename)) {
   $data = json_decode(file_get_contents($filename), true);
 } else {
   // Hostname
-  $data['hostname'] = $explodeHostname[0].'.'.DOMAIN;
+  $data['hostname'] = $hostname;
 }
 
 // OS
@@ -67,7 +60,7 @@ $data['os'] = $os;
 // Update date
 $data['time'] = $currentDate;
 
-// Save JSON file. Filename: hostname.domain.json
+// Save JSON file. Filename: hostname.json
 if( file_put_contents($filename, json_encode($data), LOCK_EX) ) {
   exit(json_encode(array('status'=>0, 'message'=>'Successfully.')));
 }

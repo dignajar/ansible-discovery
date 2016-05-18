@@ -1,8 +1,5 @@
 #!/usr/bin/python
 
-# Domain
-DOMAIN = 'yourdomain.com'
-
 # Where store the JSON files
 JSON_DIR = '/www/hosts/'
 
