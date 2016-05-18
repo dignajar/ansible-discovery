@@ -39,7 +39,9 @@ For each client should create a cron task with the command curl to annunce to th
 
 For example, if your client is an Ubuntu Linux, you can create the next cron task.
 
-`* 19 * * * curl --silent http://ansible-server -X POST -d "hostname=test.your-domain.com" -d "os=Ubuntu"`
+```
+* 19 * * * curl --silent http://ansible-server -X POST -d "hostname=`hostname`" -d "os=Ubuntu"
+```
 
 This cron execute every day at 19:00hs, this make an HTTP request method POST, with the hostname and os, as variables.
 
