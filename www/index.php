@@ -3,14 +3,6 @@
 // Where store the JSON files
 define('JSON_DIR', '/www/hosts/');
 
-// Available operating system
-$availableOS = array(
-  'ubuntu',
-  'centos',
-  'redhat',
-  'other'
-);
-
 // Check method POST and variables
 if( !isset($_POST['hostname']) || !isset($_POST['os']) ) {
   exit(json_encode(array('status'=>1, 'message'=>'Failed when try to detect the hostname and os variables.')));
@@ -62,7 +54,7 @@ $data['time'] = $currentDate;
 
 // Save JSON file. Filename: hostname.json
 if( file_put_contents($filename, json_encode($data), LOCK_EX) ) {
-  exit(json_encode(array('status'=>0, 'message'=>'Successfully.')));
+  exit(json_encode(array('status'=>0, 'message'=>'Hostname updated: '.$hostname)));
 }
 
 exit(json_encode(array('status'=>1, 'message'=>'Failed to save the JSON file.')));
