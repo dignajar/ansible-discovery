@@ -37,7 +37,7 @@ client02
 ## Ansible Client
 For each client should create a cron task with the command curl to annunce to the Ansible web server.
 
-For example, if your client is an Ubuntu server, you can create the next cron task.
+For example, if your client is an Ubuntu Linux, you can create the next cron task.
 
 `* 19 * * * curl --silent http://ansible-server -X POST -d "hostname=test.your-domain.com" -d "os=Ubuntu"`
 
