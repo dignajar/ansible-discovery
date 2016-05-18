@@ -1,6 +1,6 @@
 <?php header('Content-Type: application/json');
 
-// Where store the JSON files
+// Where are stored the JSON files
 define('JSON_DIR', '/www/hosts/');
 
 // Check method POST and variables

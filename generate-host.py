@@ -1,12 +1,12 @@
 #!/usr/bin/python
 
-# Where store the JSON files
+# Where are stored the JSON files
 JSON_DIR = '/www/hosts/'
 
-# Where Ansible store the hosts
+# Where Ansible store the host list
 ANSIBLE_HOSTS_FILE = '/etc/ansible/hosts'
 
-# Import libraries
+# Import Python libraries
 import glob
 import os
 import json
