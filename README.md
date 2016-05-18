@@ -34,21 +34,23 @@ client01
 client02
 ```
 
-## Ansible Server
-
-### Web server
-I use this script with an Nginx web server, you can use Apache u other.
-- Web server root path: `/www/`
-- Web server root index: `/www/index.php`
-- Web server JSON file list: `/www/hosts/`
-
-### Crontab to generate the /etc/ansible/hosts file
-The script `generate-host.py` generate the file `/etc/ansible/hosts` for Ansible, the list of hosts are obtained from `/www/hosts/`.
-
 ## Ansible Client
-Foreach client do you need to create a cron task with the command curl to annunce to the Ansible Discovery.
+For each client should create a cron task with the command curl to annunce to the Ansible web server.
 
 For example, if your client is an Ubuntu server, you can create the next cron task.
 `* 19 * * * curl --silent http://ansible-server -X POST -d "hostname=test.your-domain.com" -d "os=Ubuntu"`
 
 This cron execute every day at 19:00hs, this make an HTTP request method POST, with the hostname and os, as variables.
+
+## Ansible Server
+
+### Web server
+- Web server root path: `/www/`
+- Web server root index: `/www/index.php`
+- Web server JSON file list: `/www/hosts/`
+
+### Cron to generate the /etc/ansible/hosts file
+The script `generate-host.py` generate the file `/etc/ansible/hosts` for Ansible, the list of hosts are obtained from `/www/hosts/`, you can create a cron task to execute this script every day.
+
+For example, the task for generate the file of host list is executed at 20:00hs, after the clients are announced.
+`* 20 * * * /usr/bin/python /root/generate-host.py`
