@@ -3,7 +3,7 @@ Ansible hosts discovery and filter by operating system.
 
 ## How this works ?
 The Ansible server has a web server and each client has a curl who make a request to the web server every day.
-The server generate a JSON file for each request from clients.
+The server generate a JSON file for each request from clients and update the timestamp.
 
 JSON file for the hostname `client01`
 ```
